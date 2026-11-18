@@ -4,6 +4,7 @@ function [T, T_observed] = generate_synthetic_data()
     num_users = 100;
     num_movies = 80;
     num_genres = 3; 
+    keep_pct = 0.99;
     display_mode = false;
 
     % Generate random user-genre preferences 
@@ -31,7 +32,7 @@ function [T, T_observed] = generate_synthetic_data()
 
 
     % Block some number of observations 
-    observed = rand(num_users, num_movies) < 0.40;
+    observed = rand(num_users, num_movies) < keep_pct;
     T_observed = T;
     T_observed(~observed) = NaN;
     

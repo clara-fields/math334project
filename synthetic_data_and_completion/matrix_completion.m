@@ -2,7 +2,7 @@ function predicted_matrix = matrix_completion(T_observed)
 
     M = zeros(size(T_observed));
     observed = ~isnan(T_observed);
-    r = 10;
+    r = 3;
     display_mode = false;
 
     for k = 1:3000

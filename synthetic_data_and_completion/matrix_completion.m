@@ -2,10 +2,14 @@ function predicted_matrix = matrix_completion(T_observed)
 
     M = zeros(size(T_observed));
     observed = ~isnan(T_observed);
-    r = 10;
+    r = 7;
     display_mode = false;
 
-    for k = 1:3000
+    for k = 1:300
+
+        disp("Iteration:")
+        disp(k)
+        disp("")
 
         W = M;
         W(observed) = T_observed(observed);

@@ -1,9 +1,10 @@
 function [T, T_observed] = generate_synthetic_data()
 
     % Toggle dataset sizes and options
-    num_users = 1000;
-    num_movies = 800;
-    num_genres = 7;
+    num_users = 100;
+    num_movies = 80;
+    num_genres = 3; 
+    keep_pct = 0.99;
     display_mode = false;
 
     % Generate random user-genre preferences 
@@ -29,7 +30,7 @@ function [T, T_observed] = generate_synthetic_data()
     movie_qualities_matrix = repmat(movie_qualities_vector, num_users, 1);
     T = T + movie_qualities_matrix;
     T = min(max(T, 1), 5);
-
+    
     % Add some random noise
     max_random_noise = 0.75;
     T = T + max_random_noise * (2 * rand(size(T)) - 1);
@@ -37,10 +38,9 @@ function [T, T_observed] = generate_synthetic_data()
 
 
     % Block some number of observations 
-    observed = rand(num_users, num_movies) < 0.10;
+    observed = rand(num_users, num_movies) < keep_pct;
     T_observed = T;
     T_observed(~observed) = NaN;
-
     
     if display_mode
 

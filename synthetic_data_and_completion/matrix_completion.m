@@ -1,11 +1,14 @@
-function predicted_matrix = matrix_completion(T_observed)
+function predicted_matrix = matrix_completion(T_observed, r)
+
+    if nargin < 2
+        r = 3;
+    end
 
     M = zeros(size(T_observed));
     observed = ~isnan(T_observed);
-    r = 7;
     display_mode = false;
 
-    for k = 1:300
+    for k = 1:500
 
         disp("Iteration:")
         disp(k)

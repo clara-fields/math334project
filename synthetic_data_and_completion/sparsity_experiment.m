@@ -1,4 +1,3 @@
-%% Sparsity sweep: how does SVD hard thresholding degrade as data goes missing?
 rng(112226);
 r = 3;
 sparsities = 0.05:0.05:0.95;
@@ -14,8 +13,7 @@ for s = 1:numel(sparsities)
         observed = rand(num_users, num_movies) < keep_pct;
         T_observed = T;
         T_observed(~observed) = NaN;
-        % evalc runs matrix_completion but swallows its per-iteration printing
-        evalc('predicted = matrix_completion(T_observed, r);');
+        predicted = matrix_completion(T_observed, r);
         missing = ~observed;
         rmses(t, s) = sqrt(mean((predicted(missing) - T(missing)).^2));
     end

@@ -1,10 +1,13 @@
-function [T, T_observed] = generate_synthetic_data()
-
-    % Toggle dataset sizes and options
-    num_users = 100;
-    num_movies = 80;
+function [T, T_observed] = generate_synthetic_data(num_users, num_movies)
+    if nargin < 1
+        num_users = 100;
+    end
+    if nargin < 2
+        num_movies = 80;
+    end
+    
     num_genres = 3; 
-    keep_pct = 0.99;
+    keep_pct = 1.0;
     display_mode = false;
 
     % Generate random user-genre preferences 
